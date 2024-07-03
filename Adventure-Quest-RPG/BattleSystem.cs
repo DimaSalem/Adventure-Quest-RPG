@@ -56,49 +56,19 @@ namespace Adventure_Quest_RPG
                 $" health drops down to {target.Health}");
             Console.ResetColor();
         }
-
-        private void displayCharachtersInfo()
+        public void StartBattle()
         {
-            Console.WriteLine("Game Start");
-            Console.WriteLine($"Your level is LEVEL{player.Level}");
-            Console.Write("Your opponent ");
-            monster.AttackBehavior();
-            Console.WriteLine("\n----------------------------------------------------------------------");
-        }
-        private void playerLevelUp()
-        {
-            player.Level++;
-            player.AttackPower = 100 + player.Level * 10;
-            player.Defense = 100 + player.Level * 10;
-            player.Health = 100 + player.Level * 10;
-        }
-        private void resetMonsterAttributes()
-        {
-            monster = selectMonsterTypeRandomly();
-        }
-        private void resetPlayerAttributes()
-        {
-            player.Defense = 100;
-            player.Health = 100;   
-            player.AttackPower = 100;
-        }
-
-        public void playBattleRound()
-        {
-            int rounds = 0;
             while (player.Health > 0 || monster.Health > 0)
             {
                 //Console.ReadKey();
 
                 Console.WriteLine("\nPlayer Turn");
                 Attack(player, monster);
-                rounds++;
                 if (monster.Health == 0)
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("\n\n**Game Over**");
                     Console.WriteLine("**Congrats You Win**");
-                    Console.WriteLine($"**Game Ends in {rounds} rounds**");
                     Console.ResetColor();
                     break;
                 }
@@ -107,7 +77,6 @@ namespace Adventure_Quest_RPG
 
                 Console.WriteLine("\nMonster Turn");
                 Attack(monster, player);
-                rounds++;
                 if (player.Health == 0)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
@@ -117,29 +86,6 @@ namespace Adventure_Quest_RPG
                     break;
                 }
             }
-        }
-        public void StartBattle()
-        {
-            string answer = "";
-            do
-            {
-                if (answer.ToUpper() == "Y")
-                {
-                    if (monster.Health == 0)
-                        playerLevelUp();
-                    else if (player.Health == 0)
-                        resetPlayerAttributes();
-
-                    resetMonsterAttributes();
-                }
-                Console.Clear();
-                displayCharachtersInfo();
-                playBattleRound();
-                Console.WriteLine("Do you want to play another round? Y/N");
-                answer = Console.ReadLine();
-
-            } while (answer.ToUpper() == "Y");
-            
         }
 
     }

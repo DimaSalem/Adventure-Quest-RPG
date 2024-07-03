@@ -38,7 +38,7 @@ namespace AdventureQuestRPGTests
         public void TestHealthAfterBattle()
         {
             BattleSystem battle = new BattleSystem();
-            battle.playBattleRound();
+            battle.StartBattle();
 
             //the winner is the player 
             Assert.True(battle.player.Health>0);

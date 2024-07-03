@@ -34,19 +34,13 @@ namespace Adventure_Quest_RPG
             AttackPower = 100;
             Defense = 100;
         }
-
-        public abstract void AttackBehavior();
     }
     public class Zombie : Monster
     {
         public Zombie()
         {
             Name = "Zombie";
-        }
-        public override void AttackBehavior()
-        {
-            Console.Write("The Zombie shambles forward with a guttural moan, \nswinging its rotting arms to strike its prey");
-        }
+        }   
     }
     public class Skeleton : Monster
     {
@@ -54,20 +48,12 @@ namespace Adventure_Quest_RPG
         {
             Name = "Skeleton";
         }
-        public override void AttackBehavior()
-        {
-            Console.Write("The Skeleton draws its bow and fires arrows\n with deadly accuracy from a distance");
-        }
     }
     public class Creeper : Monster
     {
         public Creeper()
         {
             Name = "Creeper";
-        }
-        public override void AttackBehavior()
-        {
-            Console.Write("The Creeper silently approaches and hisses menacingly\n before exploding in a deadly blast");
         }
     }
 
