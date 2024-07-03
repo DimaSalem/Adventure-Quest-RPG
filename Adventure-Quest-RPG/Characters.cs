@@ -3,16 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Adventure_Quest_RPG
 {
-    public class Charachter
+    public interface IBattleStates
     {
         public string Name { get; set; }
         public int Health { get; set; }
         public int AttackPower { get; set; }
         public int Defense { get; set; }
     }
+    public class Charachter : IBattleStates
+    {
+        public string Name { get; set; }
+        public int Health { get; set; }
+        public int AttackPower { get; set; }
+        public int Defense { get; set; }
+
+    }    
     public class PLayer: Charachter
     {   
         public int Level { get; set; }
@@ -54,6 +63,16 @@ namespace Adventure_Quest_RPG
         public Creeper()
         {
             Name = "Creeper";
+        }
+    }
+    public class Dragon: Monster
+    {
+        public Dragon()
+        {
+            Name = "Dragon";
+            Health = 500;
+            AttackPower = 500;
+            Defense = 500;
         }
     }
 

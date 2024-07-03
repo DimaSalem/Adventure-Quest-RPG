@@ -13,7 +13,7 @@ namespace Adventure_Quest_RPG
         Monster selectMonsterTypeRandomly()
         {
             Random random = new Random();
-            int monsterType = random.Next(1, 4);
+            int monsterType = random.Next(1, 5);
             switch (monsterType)
             {
                 case 1:
@@ -22,6 +22,8 @@ namespace Adventure_Quest_RPG
                     return new Creeper();
                 case 3:
                     return new Skeleton();
+                case 4:
+                    return new Dragon();
                 default:
                     return new Skeleton();
             }
@@ -30,6 +32,7 @@ namespace Adventure_Quest_RPG
         {
             player = new PLayer();
             monster = selectMonsterTypeRandomly();
+            //monster = new Dragon();
         }
         public void Attack(Charachter attaker, Charachter target)
         {
