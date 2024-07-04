@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+using Xunit;
 using Adventure_Quest_RPG;
 
 namespace AdventureQuestRPGTests
@@ -42,6 +44,21 @@ namespace AdventureQuestRPGTests
 
             //the winner is the player 
             Assert.True(battle.player.Health>0);
+        }
+        [Fact]
+        public void EncounteringBossTest()
+        {
+            Adventure adventure = new Adventure();
+            adventure.Attack();
+            Assert.Equal(1, adventure.numbersOfBossesEncountered);
+        }
+        [Fact]
+        public void ChangeLocationTest()
+        {
+            Adventure adventure = new Adventure();
+            string oldLocation = adventure.currentLocation;
+            adventure.ChangeLocation();
+            Assert.True(adventure.currentLocation != oldLocation);
         }
     }
 }

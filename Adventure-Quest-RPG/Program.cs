@@ -4,8 +4,8 @@
     {
         static void Main(string[] args)
         {
-            BattleSystem battle= new BattleSystem();
-            battle.StartBattle();
+            Adventure adventure = new Adventure();
+            adventure.AdventureManager();
         }
     }
 }
