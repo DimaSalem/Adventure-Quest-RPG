@@ -7,13 +7,6 @@ using System.Xml.Linq;
 
 namespace Adventure_Quest_RPG
 {
-    public interface IBattleStates
-    {
-        public string Name { get; set; }
-        public int Health { get; set; }
-        public int AttackPower { get; set; }
-        public int Defense { get; set; }
-    }
     public class Charachter : IBattleStates
     {
         public string Name { get; set; }
