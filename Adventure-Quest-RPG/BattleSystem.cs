@@ -10,10 +10,10 @@ namespace Adventure_Quest_RPG
     {
         public PLayer player {  get; set; }
         public Monster monster { get; set; }
-        Monster selectMonsterTypeRandomly()
+        public Monster selectMonsterTypeRandomly()
         {
             Random random = new Random();
-            int monsterType = random.Next(1, 5);
+            int monsterType = random.Next(1, 4);
             switch (monsterType)
             {
                 case 1:
@@ -22,8 +22,6 @@ namespace Adventure_Quest_RPG
                     return new Creeper();
                 case 3:
                     return new Skeleton();
-                case 4:
-                    return new Dragon();
                 default:
                     return new Skeleton();
             }
