@@ -68,7 +68,7 @@ namespace Adventure_Quest_RPG
                 if (monster.Health == 0)
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("\n\n**Game Over**");
+                    Console.WriteLine("\n\n**Battle Over**");
                     Console.WriteLine("**Congrats You Win**");
                     Console.ResetColor();
                     break;
@@ -81,7 +81,7 @@ namespace Adventure_Quest_RPG
                 if (player.Health == 0)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("\n\n**Game Over**");
+                    Console.WriteLine("\n\n**Battle Over**");
                     Console.WriteLine("**You Lost**");
                     Console.ResetColor();
                     break;

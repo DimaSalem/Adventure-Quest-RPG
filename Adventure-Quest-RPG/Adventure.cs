@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace Adventure_Quest_RPG
 {
-    internal class Adventure
+    public class Adventure
     {
         public List<string> locations { get; set; }
         public string currentLocation { get; set; }
         public List<Monster> monsters { get; set; }
+        public int numbersOfBossesEncountered {  get; set; }
         public string action { get; set; }
         public Adventure()
         {
@@ -19,6 +20,7 @@ namespace Adventure_Quest_RPG
             currentLocation = SelectRandomLocation(locations);
             monsters = new List<Monster>();
             AddMonsters(monsters);
+            numbersOfBossesEncountered = 0;
             action = "No action yet";
         }
         public void AddLocations(List<string> locations)
@@ -79,25 +81,37 @@ namespace Adventure_Quest_RPG
                 }
                 else if (userAction.ToLower() == "l")
                 {
-                    string newLocation = SelectRandomLocation(locations);
-                    while (newLocation == currentLocation)
-                    {
-                        newLocation = SelectRandomLocation(locations);
-                    }
-                    currentLocation = newLocation;
+                    ChangeLocation();
                     continue;
                 }
                 else
                 {
-                    Console.WriteLine("You will now battle against 3 monsters and a final boss, " +
-                        "each time you win against a monster you will gain full health, defeat them to win the game");
-                    for (int i = 0; i < monsters.Count; i++)
-                    {
-                        BattleSystem battle = new BattleSystem();
-                        battle.monster = monsters[i];
-                        battle.StartBattle();
-                    }
+                    Attack();
                 }
+            }
+        }
+        public void ChangeLocation()
+        {
+            string newLocation = SelectRandomLocation(locations);
+            while (newLocation == currentLocation)
+            {
+                newLocation = SelectRandomLocation(locations);
+            }
+            currentLocation = newLocation;
+        }
+        public void Attack()
+        {
+            Console.WriteLine("You will now battle against 3 monsters and a final boss, " +
+                        "each time you win against a monster you will gain full health, defeat them to win the game");
+            for (int i = 0; i < monsters.Count; i++)
+            {
+                BattleSystem battle = new BattleSystem();
+                battle.monster = monsters[i];
+                if (monsters[i].Name == "Dragon")
+                {
+                    numbersOfBossesEncountered++;
+                }
+                battle.StartBattle();
             }
         }
     }
