@@ -8,11 +8,11 @@ namespace Adventure_Quest_RPG
 {
     public class BattleSystem
     {
-        public PLayer player {  get; set; }
+        static Random random = new Random();
+        public Player player {  get; set; }
         public Monster monster { get; set; }
-        public Monster selectMonsterTypeRandomly()
+        static public Monster selectMonsterTypeRandomly()
         {
-            Random random = new Random();
             int monsterType = random.Next(1, 4);
             switch (monsterType)
             {
@@ -28,9 +28,8 @@ namespace Adventure_Quest_RPG
         }    
         public BattleSystem()
         {
-            player = new PLayer();
+            player = new Player();
             monster = selectMonsterTypeRandomly();
-            //monster = new Dragon();
         }
         public void Attack(Charachter attaker, Charachter target)
         {
@@ -57,6 +56,27 @@ namespace Adventure_Quest_RPG
                 $" health drops down to {target.Health}");
             Console.ResetColor();
         }
+        public bool IsItemDropped()
+        {
+            int isItemDroppedRandom = random.Next(1, 4);
+            return (isItemDroppedRandom == 2 ? true : false);
+        }
+        public void AddRandomItem()
+        {
+            int itemType= random.Next(1, 4);
+            switch (itemType)
+            {
+                case 1:
+                    player.InventoryList.AddItem(new Weapon());
+                    break;
+                case 2:
+                    player.InventoryList.AddItem(new Potions());
+                    break;
+                default:
+                    player.InventoryList.AddItem(new Armor());
+                    break;
+            }
+        }
         public void StartBattle()
         {
             while (player.Health > 0 || monster.Health > 0)
@@ -64,6 +84,12 @@ namespace Adventure_Quest_RPG
                 //Console.ReadKey();
 
                 Console.WriteLine("\nPlayer Turn");
+                //test
+                /*foreach (var item in player.InventoryList.GetItems())
+                {
+                    Console.WriteLine(item);
+                    player.UseItem(item);
+                }*/
                 Attack(player, monster);
                 if (monster.Health == 0)
                 {
@@ -71,6 +97,8 @@ namespace Adventure_Quest_RPG
                     Console.WriteLine("\n\n**Battle Over**");
                     Console.WriteLine("**Congrats You Win**");
                     Console.ResetColor();
+                    if(IsItemDropped())
+                        AddRandomItem();
                     break;
                 }
 

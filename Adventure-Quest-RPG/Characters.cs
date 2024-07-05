@@ -15,16 +15,42 @@ namespace Adventure_Quest_RPG
         public int Defense { get; set; }
 
     }    
-    public class PLayer: Charachter
+    public class Player: Charachter
     {   
-        public int Level { get; set; }
-        public PLayer()
+        public Inventory InventoryList { get; set; }
+        public Player()
         {
             Name = "Player";
             Health = 100;
             AttackPower = 100;
             Defense = 100;
-            Level = 1;
+            InventoryList = new Inventory();
+        }
+
+        public bool UseItem(Item item)
+        {
+            if(InventoryList.Items.Contains(item))
+            {
+                int index= InventoryList.Items.IndexOf(item);
+                switch(InventoryList.Items[index])
+                {
+                    case (Weapon):
+                        this.AttackPower += 20;
+                        AttackPower = (AttackPower > 100 ? 100: AttackPower);
+                        break;
+                    case (Potions):
+                        this.Defense += 20;
+                        Defense = (Defense > 100 ? 100 : Defense);
+                        break;
+                    case (Armor):
+                        this.Health += 20;
+                        Health = (Health > 100 ? 100 : Health);
+                        break;
+                }
+                return true;
+            }
+            else 
+                return false;
         }
     }
     public abstract class Monster: Charachter

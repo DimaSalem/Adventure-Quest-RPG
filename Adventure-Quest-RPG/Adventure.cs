@@ -8,6 +8,7 @@ namespace Adventure_Quest_RPG
 {
     public class Adventure
     {
+        //private List<Item> items= new List<Item>();
         public List<string> locations { get; set; }
         public string currentLocation { get; set; }
         public List<Monster> monsters { get; set; }
@@ -33,8 +34,7 @@ namespace Adventure_Quest_RPG
         {
             for (int i = 0; i < 3; i++)
             {
-                BattleSystem battleSystem = new BattleSystem();
-                Monster monster = battleSystem.selectMonsterTypeRandomly();
+                Monster monster = BattleSystem.selectMonsterTypeRandomly();
                 monsters.Add(monster);
             }
             Dragon dragon = new Dragon();
@@ -59,13 +59,13 @@ namespace Adventure_Quest_RPG
             Console.WriteLine("Welcome to RPG Adventure, enter start to begin the game!");
             string userStart = Console.ReadLine();
             bool endGame = false;
-            while (endGame == false)
+            while (userStart.ToLower() != "start")
             {
-                while (userStart.ToLower() != "start")
-                {
-                    Console.WriteLine("You should type start, then press enter to begin the game!");
-                    userStart = Console.ReadLine();
-                }
+                Console.WriteLine("You should type start, then press enter to begin the game!");
+                userStart = Console.ReadLine();
+            }
+            while (endGame == false)
+            {       
                 Console.WriteLine($"Your current location is {currentLocation}, and there are 3 monsters in front" +
                     $" of you, you can attack a monster(enter A), change your location(enter L), or end the game(enter E)");
                 string userAction = Console.ReadLine();
@@ -87,6 +87,8 @@ namespace Adventure_Quest_RPG
                 else
                 {
                     Attack();
+                    monsters.Clear();
+                    AddMonsters(monsters);
                 }
             }
         }
@@ -107,12 +109,17 @@ namespace Adventure_Quest_RPG
             {
                 BattleSystem battle = new BattleSystem();
                 battle.monster = monsters[i];
+                //we need to save the items from the previous round
+                //line 11, 114, 120, and 122 is for test only, you can edit them
+                //battle.player.InventoryList.Items = items;
                 if (monsters[i].Name == "Dragon")
                 {
                     numbersOfBossesEncountered++;
                 }
                 battle.StartBattle();
+                //items = battle.player.InventoryList.Items;
             }
+            //items.Clear();
         }
     }
 }
