@@ -11,6 +11,7 @@ namespace Adventure_Quest_RPG
         static Random random = new Random();
         public Player player {  get; set; }
         public Monster monster { get; set; }
+        public bool playerLost {  get; set; }
         static public Monster selectMonsterTypeRandomly()
         {
             int monsterType = random.Next(1, 4);
@@ -30,6 +31,7 @@ namespace Adventure_Quest_RPG
         {
             player = new Player();
             monster = selectMonsterTypeRandomly();
+            playerLost = false;
         }
         public void Attack(Charachter attaker, Charachter target)
         {
@@ -56,11 +58,11 @@ namespace Adventure_Quest_RPG
                 $" health drops down to {target.Health}");
             Console.ResetColor();
         }
-        public bool IsItemDropped()
-        {
-            int isItemDroppedRandom = random.Next(1, 4);
-            return (isItemDroppedRandom == 2 ? true : false);
-        }
+        //public bool IsItemDropped()
+        //{
+        //    int isItemDroppedRandom = random.Next(1, 4);
+        //    return (isItemDroppedRandom == 2 ? true : false);
+        //}
         public void AddRandomItem()
         {
             int itemType= random.Next(1, 4);
@@ -79,7 +81,15 @@ namespace Adventure_Quest_RPG
         }
         public void StartBattle()
         {
-            while (player.Health > 0 || monster.Health > 0)
+            if(player.InventoryList.Items.Count > 0)
+            {
+                for(int i = 0;i< player.InventoryList.Items.Count;i++)
+                {
+                    player.UseItem(player.InventoryList.Items[i]);
+                    Console.WriteLine($"player is now using {player.InventoryList.Items[i].Name}");
+                }
+            }
+            while (player.Health > 0 && monster.Health > 0)
             {
                 //Console.ReadKey();
 
@@ -97,9 +107,13 @@ namespace Adventure_Quest_RPG
                     Console.WriteLine("\n\n**Battle Over**");
                     Console.WriteLine("**Congrats You Win**");
                     Console.ResetColor();
-                    if(IsItemDropped())
+                    if (monster.Health == 0)
+                    {
                         AddRandomItem();
-                    break;
+                        Console.WriteLine($"{monster.Name} dropped a" +
+                            $" {player.InventoryList.Items[player.InventoryList.Items.Count - 1].Name}," +
+                            $" its added to your inventory");
+                    }
                 }
 
                 //Console.ReadKey();
@@ -112,6 +126,7 @@ namespace Adventure_Quest_RPG
                     Console.WriteLine("\n\n**Battle Over**");
                     Console.WriteLine("**You Lost**");
                     Console.ResetColor();
+                    playerLost = true;
                     break;
                 }
             }

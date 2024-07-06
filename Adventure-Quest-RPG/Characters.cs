@@ -27,7 +27,7 @@ namespace Adventure_Quest_RPG
             InventoryList = new Inventory();
         }
 
-        public bool UseItem(Item item)
+        public void UseItem(Item item)
         {
             if(InventoryList.Items.Contains(item))
             {
@@ -36,21 +36,15 @@ namespace Adventure_Quest_RPG
                 {
                     case (Weapon):
                         this.AttackPower += 20;
-                        AttackPower = (AttackPower > 100 ? 100: AttackPower);
                         break;
                     case (Potions):
-                        this.Defense += 20;
-                        Defense = (Defense > 100 ? 100 : Defense);
+                        this.Health += 20;
                         break;
                     case (Armor):
-                        this.Health += 20;
-                        Health = (Health > 100 ? 100 : Health);
+                        this.Defense += 20;
                         break;
                 }
-                return true;
             }
-            else 
-                return false;
         }
     }
     public abstract class Monster: Charachter
@@ -59,8 +53,8 @@ namespace Adventure_Quest_RPG
         {
             Name = "";
             Health = 100;
-            AttackPower = 100;
-            Defense = 100;
+            AttackPower = 30;
+            Defense = 30;
         }
     }
     public class Zombie : Monster
@@ -89,9 +83,9 @@ namespace Adventure_Quest_RPG
         public Dragon()
         {
             Name = "Dragon";
-            Health = 500;
-            AttackPower = 500;
-            Defense = 500;
+            Health = 100;
+            AttackPower = 100;
+            Defense = 100;
         }
     }
 
