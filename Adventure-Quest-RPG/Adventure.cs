@@ -113,10 +113,10 @@ namespace Adventure_Quest_RPG
                     numbersOfBossesEncountered++;
                 }
                 battle.StartBattle();
-                //if (battle.playerLost == true)
-                //{
-                //    break;
-                //}
+                if (battle.playerLost == true)
+                {
+                    break;
+                }
             }
             
         }

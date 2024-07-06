@@ -39,19 +39,19 @@ namespace Adventure_Quest_RPG
             Console.WriteLine($"{attaker.Name} attacks with Attack Power={attaker.AttackPower}");
             Console.WriteLine($"{target.Name} defends with Defense={target.Defense} and Health={target.Health}");
 
-            int damage = attaker.AttackPower/2 - target.Defense/4;
+            int damage = attaker.AttackPower - target.Defense;
             if(damage < 0)
                 damage = 0;
             target.Health -= damage;
             if (target.Health < 0)
                 target.Health = 0;
 
-            attaker.AttackPower -= 10;
-            target.Defense -= 10;
-            if (attaker.AttackPower < 0)
-                attaker.AttackPower = 0;
-            if (target.Defense < 0)
-                target.Health = 0;
+            //attaker.AttackPower -= 10;
+            //target.Defense -= 10;
+            //if (attaker.AttackPower < 0)
+            //    attaker.AttackPower = 0;
+            //if (target.Defense < 0)
+            //    target.Health = 0;
 
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine($"Attack Results: {attaker.Name} causes damage={damage} so {target.Name}" +
@@ -114,6 +114,7 @@ namespace Adventure_Quest_RPG
                             $" {player.InventoryList.Items[player.InventoryList.Items.Count - 1].Name}," +
                             $" its added to your inventory");
                     }
+                    break;
                 }
 
                 //Console.ReadKey();

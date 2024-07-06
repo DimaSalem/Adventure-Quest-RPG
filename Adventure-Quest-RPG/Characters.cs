@@ -22,8 +22,8 @@ namespace Adventure_Quest_RPG
         {
             Name = "Player";
             Health = 100;
-            AttackPower = 100;
-            Defense = 100;
+            AttackPower = 50;
+            Defense = 20;
             InventoryList = new Inventory();
         }
 
@@ -54,7 +54,7 @@ namespace Adventure_Quest_RPG
             Name = "";
             Health = 100;
             AttackPower = 30;
-            Defense = 30;
+            Defense = 20;
         }
     }
     public class Zombie : Monster
@@ -83,9 +83,9 @@ namespace Adventure_Quest_RPG
         public Dragon()
         {
             Name = "Dragon";
-            Health = 100;
-            AttackPower = 100;
-            Defense = 100;
+            Health = 200;
+            AttackPower = 30;
+            Defense = 30;
         }
     }
 
