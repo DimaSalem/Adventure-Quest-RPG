@@ -58,11 +58,11 @@ namespace Adventure_Quest_RPG
                 $" health drops down to {target.Health}");
             Console.ResetColor();
         }
-        //public bool IsItemDropped()
-        //{
-        //    int isItemDroppedRandom = random.Next(1, 4);
-        //    return (isItemDroppedRandom == 2 ? true : false);
-        //}
+        public bool IsItemDropped()
+        {
+            int isItemDroppedRandom = random.Next(1, 4);
+            return (isItemDroppedRandom == 2 ? true : false);
+        }
         public void AddRandomItem()
         {
             int itemType= random.Next(1, 4);
@@ -109,10 +109,14 @@ namespace Adventure_Quest_RPG
                     Console.ResetColor();
                     if (monster.Health == 0)
                     {
-                        AddRandomItem();
-                        Console.WriteLine($"{monster.Name} dropped a" +
-                            $" {player.InventoryList.Items[player.InventoryList.Items.Count - 1].Name}," +
-                            $" its added to your inventory");
+                        if (IsItemDropped())
+                        {
+                            AddRandomItem();
+                            Console.WriteLine($"{monster.Name} dropped a" +
+                                $" {player.InventoryList.Items[player.InventoryList.Items.Count - 1].Name}," +
+                                $" its added to your inventory");
+                        }
+                            
                     }
                     break;
                 }

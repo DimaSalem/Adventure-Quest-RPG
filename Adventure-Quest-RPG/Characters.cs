@@ -84,7 +84,7 @@ namespace Adventure_Quest_RPG
         {
             Name = "Dragon";
             Health = 200;
-            AttackPower = 30;
+            AttackPower = 60;
             Defense = 30;
         }
     }
