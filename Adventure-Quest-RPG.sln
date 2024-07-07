@@ -5,6 +5,8 @@ VisualStudioVersion = 17.10.34928.147
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adventure-Quest-RPG", "Adventure-Quest-RPG\Adventure-Quest-RPG.csproj", "{692CACB0-5108-4CC9-B73F-9606C6FF746B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventureQuestRPGTests", "AdventureQuestRPGTests\AdventureQuestRPGTests.csproj", "{6EC46A0F-326E-406A-A796-7F2F177A66B8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{692CACB0-5108-4CC9-B73F-9606C6FF746B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{692CACB0-5108-4CC9-B73F-9606C6FF746B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{692CACB0-5108-4CC9-B73F-9606C6FF746B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EC46A0F-326E-406A-A796-7F2F177A66B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EC46A0F-326E-406A-A796-7F2F177A66B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EC46A0F-326E-406A-A796-7F2F177A66B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EC46A0F-326E-406A-A796-7F2F177A66B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
