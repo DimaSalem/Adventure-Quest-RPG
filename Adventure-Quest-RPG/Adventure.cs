@@ -8,7 +8,6 @@ namespace Adventure_Quest_RPG
 {
     public class Adventure
     {
-        //private List<Item> items= new List<Item>();
         public List<string> locations { get; set; }
         public string currentLocation { get; set; }
         public List<Monster> monsters { get; set; }
@@ -67,7 +66,7 @@ namespace Adventure_Quest_RPG
             while (endGame == false)
             {       
                 Console.WriteLine($"Your current location is {currentLocation}, and there are 3 monsters in front" +
-                    $" of you, you can attack a monster(enter A), change your location(enter L), or end the game(enter E)");
+                    $" of you, choose an action:\n Attack The monsters (enter A) \n Change your location (enter L) \n End the game (enter E)");
                 string userAction = Console.ReadLine();
                 while (userAction.ToLower() != "a" && userAction.ToLower() != "l" && userAction.ToLower() != "e")
                 {
@@ -103,23 +102,23 @@ namespace Adventure_Quest_RPG
         }
         public void Attack()
         {
-            Console.WriteLine("You will now battle against 3 monsters and a final boss, " +
+            Console.WriteLine("You will now battle against 3 monsters and a final boss,\n " +
                         "each time you win against a monster you will gain full health, defeat them to win the game");
+            BattleSystem battle = new BattleSystem();
             for (int i = 0; i < monsters.Count; i++)
             {
-                BattleSystem battle = new BattleSystem();
                 battle.monster = monsters[i];
-                //we need to save the items from the previous round
-                //line 11, 114, 120, and 122 is for test only, you can edit them
-                //battle.player.InventoryList.Items = items;
                 if (monsters[i].Name == "Dragon")
                 {
                     numbersOfBossesEncountered++;
                 }
                 battle.StartBattle();
-                //items = battle.player.InventoryList.Items;
+                if (battle.playerLost == true)
+                {
+                    break;
+                }
             }
-            //items.Clear();
+            
         }
     }
 }
